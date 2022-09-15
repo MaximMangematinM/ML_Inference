@@ -1,9 +1,7 @@
 
 from flask import Flask
-import torch
 from commons import preprocess_image, get_prediction, image_classification_vit
 from flask import render_template, redirect, request
-import io
 import os
 import json
 from sentiment_annalisis import eval_sentence_pipeline_roberta_twitter, eval_sentence_roberta_large
@@ -89,7 +87,7 @@ def enter_sentence():
             except KeyError:
                 return render_template("enter_text.html")
         
-        with open("./static/text_class_result.json", "w") as res_json:
+        with open("./result/text_class_result.json", "w") as res_json:
             json.dump({"text" : text, "class" : text_class}, res_json)
         
         return redirect("/sentence_sentiment")
@@ -99,7 +97,7 @@ def enter_sentence():
 
 @app.route("/sentence_sentiment")
 def text_classification_restult():
-    with open("./static/text_class_result.json", "r") as f:
+    with open("/result/text_class_result.json", "r") as f:
         res = json.load(f)
     sentiment = res["class"]
     sentence = res["text"]
