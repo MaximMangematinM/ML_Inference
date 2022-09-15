@@ -12,7 +12,7 @@ app = Flask(__name__)
 @app.route("/image_classification_result")
 def densenet_display_result():
     """Function that calls the image classification model and render the result into the app"""
-    with open("classification_result.json", "r") as f:
+    with open("./result/classification_result.json", "r") as f:
         classification_result = json.load(f) #retrieve the result from the json
     return render_template('predict.html', class_id=classification_result["class_id"],
                                class_name=classification_result["class_name"])
@@ -42,7 +42,7 @@ def upload_file():
                 return render_template("index.html")
         
         #save the result into an json
-        with open("classification_result.json", "w") as res_file:
+        with open("./result/classification_result.json", "w") as res_file:
             json.dump({"class_id" : class_id, "class_name" : class_name}, res_file)
         
         return redirect("/image_classification_result") #go to the result page
@@ -97,7 +97,7 @@ def enter_sentence():
 
 @app.route("/sentence_sentiment")
 def text_classification_restult():
-    with open("/result/text_class_result.json", "r") as f:
+    with open("./result/text_class_result.json", "r") as f:
         res = json.load(f)
     sentiment = res["class"]
     sentence = res["text"]
