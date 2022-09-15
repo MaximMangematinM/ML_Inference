@@ -1,14 +1,14 @@
 # ML_Inference
 Machine learning inférence unsing pytorch and deployed on a local server using flask
 
-##Models
+Models
 
-###Image classification
+### Image classification
 
  - Vision Transformer from google, state of the art model for image recognition
  - densenet model, deep learning aproach for the classification model. Ligther than the ViT model
  
-###Text classification
+### Text classification
 I choose to use two robberta models
 
  - robberta base twitter sentiment, trained on annotated tweets
